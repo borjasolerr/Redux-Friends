@@ -78,7 +78,6 @@ export function deleteFriend(id) {
 
 export function editForm(friend) {
   return dispatch => {
-    // console.log(id);
     dispatch({ type: EDITFORM, payload: friend });
   };
 }

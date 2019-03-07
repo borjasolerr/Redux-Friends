@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { editForm, editFriend } from '../actions';
+import { FaEdit } from 'react-icons/fa';
+import { Button, FormControl } from 'react-bootstrap';
 
 class EditForm extends React.Component {
   constructor(props) {
@@ -43,21 +45,18 @@ class EditForm extends React.Component {
   };
   render() {
     return (
-      <div>
-        {/* {} */}
-        <form className="editForm" onSubmit={this.editFriendHandler}>
-          <input onChange={this.changeHandler} type="text" name="name" value={this.state.friend.name} placeholder="name" />
-          <br />
-          <input onChange={this.changeHandler} type="text" name="age" value={this.state.friend.age} placeholder="age" />
-          <br />
-          <input onChange={this.changeHandler} type="email" name="email" value={this.state.friend.email} placeholder="email" />
-          <br />
-          <button type="submit">Edit</button>
-          {/* { this.addFriendHandler ? 
-                        <div>{this.props.savingFriends}</div>
-                    } */}
-        </form>
-      </div>
+      <form className="editForm" onSubmit={this.editFriendHandler}>
+        <h1>Edit friend</h1>
+        <FormControl onChange={this.changeHandler} type="text" name="name" value={this.state.friend.name} placeholder="name" />
+        <br />
+        <FormControl onChange={this.changeHandler} type="text" name="age" value={this.state.friend.age} placeholder="age" />
+        <br />
+        <FormControl onChange={this.changeHandler} type="email" name="email" value={this.state.friend.email} placeholder="email" />
+        <br />
+        <Button variant="success" type="submit">
+          Update <FaEdit />
+        </Button>
+      </form>
     );
   }
 }
@@ -76,8 +75,5 @@ const mstp = ({ friendsReducer: state }) => {
 
 export default connect(
   mstp,
-  {
-    editForm,
-    editFriend
-  }
+  { editForm, editFriend }
 )(EditForm);

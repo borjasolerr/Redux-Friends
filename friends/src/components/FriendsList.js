@@ -3,12 +3,10 @@ import Friend from './Friend';
 
 const FriendsList = props => {
   return (
-    <div>
-      <ul>
-        {props.friends.map((friend, index) => {
-          return <Friend id={friend.id} friend={friend} key={index} />;
-        })}
-      </ul>
+    <div className="friend-list">
+      {props.friends.map((friend, index) => {
+        return <Friend id={friend.id} friend={friend} key={index} />;
+      })}
     </div>
   );
 };
