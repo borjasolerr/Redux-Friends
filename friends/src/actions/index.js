@@ -40,7 +40,7 @@ export function addFriend(friend) {
   return dispatch => {
     dispatch({ type: ADDING });
     axios
-      .post(`http://localhost:5000/api/friends`, newFriend)
+      .post('http://localhost:5000/api/friends', newFriend)
       .then(response => {
         dispatch({
           type: ADDED,

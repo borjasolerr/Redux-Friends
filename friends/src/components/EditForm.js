@@ -20,7 +20,6 @@ class EditForm extends React.Component {
 
   editFriendHandler = e => {
     e.preventDefault();
-    console.log(this.props);
     this.props.editFriend(this.state.friend.id, this.state.friend);
     this.setState({
       friend: {
@@ -29,11 +28,9 @@ class EditForm extends React.Component {
         email: ''
       }
     });
-    console.log(this.state);
   };
 
   changeHandler = e => {
-    // e.preventDefault();
     this.setState({
       friend: {
         ...this.state.friend,
@@ -47,11 +44,11 @@ class EditForm extends React.Component {
     return (
       <form className="editForm" onSubmit={this.editFriendHandler}>
         <h1>Edit friend</h1>
-        <FormControl onChange={this.changeHandler} type="text" name="name" value={this.state.friend.name} placeholder="name" />
+        <FormControl onChange={this.changeHandler} type="text" name="name" value={this.state.friend.name} placeholder="Name" />
         <br />
-        <FormControl onChange={this.changeHandler} type="text" name="age" value={this.state.friend.age} placeholder="age" />
+        <FormControl onChange={this.changeHandler} type="text" name="age" value={this.state.friend.age} placeholder="Age" />
         <br />
-        <FormControl onChange={this.changeHandler} type="email" name="email" value={this.state.friend.email} placeholder="email" />
+        <FormControl onChange={this.changeHandler} type="email" name="email" value={this.state.friend.email} placeholder="Email" />
         <br />
         <Button variant="success" type="submit">
           Update <FaEdit />

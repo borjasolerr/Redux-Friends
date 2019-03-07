@@ -12,38 +12,21 @@ class FriendsListView extends React.Component {
   render() {
     return (
       <div className="friendslist-wrapper">
-        {this.props.loading && (
-          <Alert variant="primary">
-            <p>Loading friends</p>
-          </Alert>
-        )}
-        {this.props.adding && <p>Adding your friend</p>}
-        {this.props.added && (
-          <Alert dismissible variant="success">
-            <p>Friend added</p>
-          </Alert>
-        )}
-        {this.props.deleted && <p>Deleting your friend</p>}
-        {this.props.deleting && (
-          <Alert dismissible variant="success">
-            <p>Freind Deleted</p>
-          </Alert>
-        )}
-        {this.props.editing && <p>Editing your friend</p>}
-        {this.props.edited && (
-          <Alert dismissible variant="success">
-            <p>Friend edited</p>
-          </Alert>
-        )}
+        {this.props.loading && <Alert variant="primary">Loading friends</Alert>}
+        {this.props.adding && <Alert variant="info">Adding your friend</Alert>}
+        {this.props.added && <Alert variant="success">Friend added</Alert>}
+        {this.props.deleting && <Alert variant="warning">Deleting your friend</Alert>}
+        {this.props.deleted && <Alert variant="danger">Friend Deleted</Alert>}
+        {this.props.editing && <Alert variant="light">Editing your friend</Alert>}
+        {this.props.edited && <Alert variant="success">Friend edited</Alert>}
 
         {this.props.addForm ? (
-          <div>
-            {/* <Button variant="primary"></Button> */}
+          <div className="container">
             <FriendForm />
             <FriendsList friends={this.props.friends} />
           </div>
         ) : (
-          <div>
+          <div className="container">
             <EditForm friend={this.props.friend} id={this.props.editId} />
           </div>
         )}

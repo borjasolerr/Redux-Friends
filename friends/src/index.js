@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import * as serviceWorker from './serviceWorker';
+
 const friendStore = createStore(mainReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
