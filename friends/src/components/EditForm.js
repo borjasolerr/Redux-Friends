@@ -1,23 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFriend } from '../actions';
+import { editForm, editFriend } from '../actions';
 
-class FriendForm extends React.Component {
+class EditForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       friend: {
-        name: '',
-        age: '',
-        email: ''
+        id: this.props.friend.id,
+        name: this.props.friend.name,
+        age: this.props.friend.age,
+        email: this.props.friend.email
       }
     };
   }
-  addFriendHandler = e => {
+
+  editFriendHandler = e => {
     e.preventDefault();
     console.log(this.props);
-    this.props.addFriend(this.state.friend);
+    this.props.editFriend(this.state.friend.id, this.state.friend);
     this.setState({
       friend: {
         name: '',
@@ -43,14 +45,14 @@ class FriendForm extends React.Component {
     return (
       <div>
         {/* {} */}
-        <form className="addForm" onSubmit={this.addFriendHandler}>
+        <form className="editForm" onSubmit={this.editFriendHandler}>
           <input onChange={this.changeHandler} type="text" name="name" value={this.state.friend.name} placeholder="name" />
           <br />
           <input onChange={this.changeHandler} type="text" name="age" value={this.state.friend.age} placeholder="age" />
           <br />
           <input onChange={this.changeHandler} type="email" name="email" value={this.state.friend.email} placeholder="email" />
           <br />
-          <button type="submit">Add</button>
+          <button type="submit">Edit</button>
           {/* { this.addFriendHandler ? 
                         <div>{this.props.savingFriends}</div>
                     } */}
@@ -60,7 +62,22 @@ class FriendForm extends React.Component {
   }
 }
 
+const mstp = ({ friendsReducer: state }) => {
+  return {
+    editId: state.editId,
+    friend: {
+      id: state.friend.id,
+      name: state.friend.name,
+      age: state.friend.age,
+      email: state.friend.email
+    }
+  };
+};
+
 export default connect(
-  null,
-  { addFriend }
-)(FriendForm);
+  mstp,
+  {
+    editForm,
+    editFriend
+  }
+)(EditForm);
